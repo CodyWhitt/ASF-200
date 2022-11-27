@@ -3,7 +3,7 @@ import math
 
 # global object to be tossed around and edited easily
 yourRoll = []
-
+picturedRoll = []
 # class for the methods of the Dice
 class Dice:
     def __init__(sides, count):
@@ -17,9 +17,24 @@ class Dice:
     def getCurrentFaceValue(x):
         return(x)
     
-    # same redundancy here
+    # Extra credit assigning emojis to dice face number using a for loop. 
     def showDiceFace(x):
-        print(x)
+        for x in range(0,len(yourRoll)):
+            global picturedRoll
+            if yourRoll[x] == 1:
+                picturedRoll.append('⚀')
+            elif yourRoll[x] == 2: 
+                picturedRoll.append('⚁')
+            elif yourRoll[x] == 3: 
+                picturedRoll.append('⚂')
+            elif yourRoll[x] == 4: 
+                picturedRoll.append('⚃')
+            elif yourRoll[x] == 5: 
+                picturedRoll.append('⚄')
+            elif yourRoll[x] == 6: 
+                picturedRoll.append('⚅')
+        print(picturedRoll)
+
 
 def rollDice():
     # used a for loop to iterate through 5 times
@@ -38,3 +53,4 @@ def rollDice():
     
 # HIT IT!
 rollDice()
+
