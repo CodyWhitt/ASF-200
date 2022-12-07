@@ -1,9 +1,14 @@
-from flask import Flask
+from flask import Flask, request, render_template
+import addressbook
+
+for 
+
 app = Flask(__name__)
 
 @app.route("/")
-def hello():
-    return "Hello Flask World!"
+def home():
+   return render_template('index.html',users=users)
+# @app.route("/search")
 
 if __name__ == "__main__":
     app.run()
