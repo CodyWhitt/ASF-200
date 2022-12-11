@@ -110,7 +110,7 @@ class AuthorizedUsers():
 
 # Grabs data from provided API site
 def getData():
-    URL = "https://randomuser.me/api/?results=10"
+    URL = "https://randomuser.me/api/?results=10&nat=us"
 
     try:
         response = requests.get(URL, timeout=5)
