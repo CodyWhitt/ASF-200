@@ -1,6 +1,4 @@
-import requests
-
-class Contacts():
+class Contact():
     def __init__(self,firstName,lastName,emailAddress,phone,picLarge):
         self.firstName = firstName
         self.lastName = lastName
@@ -41,7 +39,7 @@ class Contacts():
         retRepr += (self.phone) + ' '
         retRepr += (self.picLarge) + ' '
         return  retRepr
-
+        
 class AddressBook():
     def __init__(self):
         self.users = []
@@ -49,46 +47,13 @@ class AddressBook():
     def addUser(self, user):
         self.users.append(user)
 
-    def showAuthorizedUsers(self):
-        for user in self.users:
-            print(user)
+    def showAllUsers(self):
+        return self.users
 
-    def searchForUser(self, firstName):
+    def findAllMatching(self, searchStr):
+        results = []
         for user in self.users:
-            if (user.getUser() == firstName):
-                return user
+            if user.getFirstName().lower().startswith(searchStr.lower()) or user.getLastName().lower().startswith(searchStr.lower()):
+                results.append(user)
+                return results
         return None
-    
-# Grabs data from provided API site
-def getData():
-    URL = "https://randomuser.me/api/?results=25"
-
-    try:
-        response = requests.get(URL, timeout=5)
-        response.raise_for_status()
-        response_JSON = response.json()
-        return response_JSON
-    except requests.exceptions.HTTPError as errh:
-        print(errh)
-    except requests.exceptions.ConnectionError as errc:
-        print(errc)
-    except requests.exceptions.Timeout as errt:
-        print(errt)
-    except requests.exceptions.RequestException as err:
-        print(err)
-
-# loop to store all requested data
-users = AddressBook()
-jsonUserData = getData()
-
-for currentUser in jsonUserData["results"]:
-    firstName = currentUser["name"]["first"]
-    lastName = currentUser["name"]["last"]
-    emailAddress = currentUser["email"]
-    phone = currentUser["phone"]
-    picLarge = currentUser["picture"]["large"]
-    
-    newUser = Contacts(firstName,lastName,emailAddress,phone,picLarge)
-    users.addUser(newUser)
-
-users.showAuthorizedUsers

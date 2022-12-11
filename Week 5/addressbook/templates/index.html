@@ -18,15 +18,15 @@
         
     </div>
     <div class="rolodex">
-        <!-- {% for x in x %}     
+        {% for users in users %}     
 		<div class="card">
-            <div class="photo"><img src="photo.jpg" alt=""></div>
-            <div class="name">Your Name</div>
-            <div class="phone">555-555-5555</div>
-            <div class="emal">email@gmail.com</div>
+            <div class="photo"><img src={{users.getPicLarge()}} alt=""></div>
+            <div class="name">{{ users.getFirstName() }} {{ users.getLastName() }}</div>
+            <div class="phone">{{ users.getPhone() }}</div>
+            <div class="email">{{ users.getEmailAddress() }}</div>
         </div> 
 		
-        {% endfor %}         -->
+        {% endfor %}        
     </div>
 </body>
 </html>
