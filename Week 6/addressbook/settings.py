@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3(c^#!_o%8e=!e9a&9kpc&p)d)dhjy#!nr-ewid49mq@gh#xhj'
+SECRET_KEY = 'django-insecure-*f9*_#5$yon47)ey(0u6449v#*7itsi)$r-2xzotjj6*4f7ka)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'contacts',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'addressbook.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["addressbook/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
