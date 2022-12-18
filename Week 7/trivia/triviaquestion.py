@@ -1,4 +1,4 @@
-class Contact():
+class TriviaQuestion():
     def __init__(self,question,category,difficulty,answer,incAnswers,id):
         self.question = question
         self.category = category
@@ -27,6 +27,32 @@ class Contact():
         return self.id
 
     def getShuffledAnswers():
-        # Create a method called "getShuffledAnswers" that returns a list containing the correct answer and the incorrect answers in a list that has been shuffled. 
-        # Google "python shuffle list" for information on how to shuffle a list.  This class will be used to store a single trivia question.
-        return None
+        results = []
+        for 
+
+    def __str__(self):
+        retStr = "UserData: "
+        retStr += (self.question) + ' '
+        retStr += (self.category) + ' '
+        retStr += (self.difficulty) + ' '
+        retStr += (self.answer) + ' '
+        retStr += (self.incAnswers) + ' '
+        retStr += (self.id) + ' '
+        return retStr
+
+    def __repr__(self):
+        retRepr = "UserData: "
+        retRepr += (self.question) + ' '
+        retRepr += (self.category) + ' '
+        retRepr += (self.difficulty) + ' '
+        retRepr += (self.answer) + ' '
+        retRepr += (self.incAnswers) + ' '
+        retRepr += (self.id) + ' '
+        return  retRepr
+    
+    class AddressBook():
+    def __init__(self):
+        self.users = []
+
+    def addUser(self, user):
+        self.users.append(user)
