@@ -6,7 +6,7 @@ import triviagame
 app = Flask(__name__)
 
 def getData():
-    URL = "https://opentdb.com/api.php?amount=1"
+    URL = "https://opentdb.com/api.php?amount=5"
 
     try:
         response = requests.get(URL, timeout=5)
@@ -22,7 +22,7 @@ def getData():
     except requests.exceptions.RequestException as err:
         print(err)
 
-question = triviaquestion.TriviaQuestion()
+questions = triviaquestion.QuestionLog()
 jsonQuestionData = getData()
 
 for currentQuestions in jsonQuestionData["results"]:
@@ -32,11 +32,26 @@ for currentQuestions in jsonQuestionData["results"]:
     answer = currentQuestions["correct_answer"]
     incAnswers = currentQuestions["incorrect_answers"]
     
-    newQuestion = triviaquestion.TriviaQuestion(question,category,difficulty,answer,incAnswers,id)
+    newQuestion = triviaquestion.TriviaQuestion(question,category,difficulty,answer,incAnswers)
+    questions.addQuestion(newQuestion)
 
 @app.route("/")
 def home():
-    return render_template('index.html',)
+    return render_template('index.html',questions = questions.showAllQuestions())
+
+# @app.route('/score', methods=['POST'])
+# def checkAnswers():
+#     if request.method == 'POST':
+#         correctlyAnsweredQuestions = []
+#         incorrectlyAnsweredQuestions = []
+#         for question in gameBoardQuestions:
+#             if (request.form[str(question.getID())] == question.getCorrectAnswer()):
+#                 correctlyAnsweredQuestions.append(question)
+#             else:
+#                 incorrectlyAnsweredQuestions.append(question)        
+                
+#         # proccess user guesses to questions
+#         return render_template(....)
 
 if __name__ == "__main__":
     app.run()

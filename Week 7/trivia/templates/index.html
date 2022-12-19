@@ -8,25 +8,20 @@
     <title>Flask Trivia</title>
 </head>
 <body>
-    <div class="search-wrapper">
-        <form action="http://127.0.0.1:5000/search" method="POST">
-            <label for="search">Flask Trivia</label><br>
-            <input type="search" id="search" name="search">
-            <button type="submit">Search</button>
-            <button onclick="location.href='/'">Clear Results</button>
-        </form>
-        
+    <div class = 'header'>
+        <h1>Test Your Trivia Knowledge</h1>
+        <h3>Category: {{questions.getCategory}}</h3>
     </div>
-    <div class="rolodex">
-        {% for users in users %}     
-		<div class="card">
-            <div class="photo"><img src={{users.getPicLarge()}} alt=""></div>
-            <div class="name">{{ users.getFirstName() }} {{ users.getLastName() }}</div>
-            <div class="phone">{{ users.getPhone() }}</div>
-            <div class="email">{{ users.getEmailAddress() }}</div>
+    <form class="card">
+        {% for questions in questions %}     
+		<div>
+            <div class="question">{{questions.getQuestion()}}</div>
+            {% for answer in questions.getShuffledAnswers() %}
+                <input type='radio' class="answers">{{answer}}</input>
+            {% endfor %}
         </div> 
-		
-        {% endfor %}        
-    </div>
+        {% endfor %}
+        <button>Score</button>
+    </form>
 </body>
 </html>
