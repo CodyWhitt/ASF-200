@@ -9,10 +9,9 @@
 </head>
 <body>
     <div class = 'header'>
-        <h1>Test Your Trivia Knowledge</h1>
-        <h3>Category - Science: Computers</h3>
+        <h1>Score</h1>
     </div>
-    <form class="card" action="http://localhost:5000/score" method = "post">
+    <form class="card">
         {% for question in questions %}     
 		<div>
             &emsp;<div class="question">{{question.getId()}}. {{question.getQuestion()}}</div>

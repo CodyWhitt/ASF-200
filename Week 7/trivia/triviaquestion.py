@@ -1,14 +1,17 @@
 import random
 
 class TriviaQuestion():
+
+    NEXTQUESTIONID = 0
+
     def __init__(self,question,category,difficulty,answer,incAnswers):
         self.question = question
         self.category = category
         self.difficulty = difficulty
         self.answer = answer
         self.incAnswers = incAnswers
-
-        # self.id = id
+        TriviaQuestion.NEXTQUESTIONID += 1
+        self.id = TriviaQuestion.NEXTQUESTIONID
     
     # Getters
     def getQuestion(self):
@@ -27,56 +30,12 @@ class TriviaQuestion():
         return [self.incAnswers]
 
     def getShuffledAnswers(self):
-        self.shuffledAnswers = []
-        self.shuffledAnswers.append(self.answer)
+        shuffledAnswers = []
+        shuffledAnswers.append(self.answer)
         for option in self.incAnswers:
-            self.shuffledAnswers.append(option)
-        random.shuffle(self.shuffledAnswers)
-        return self.shuffledAnswers
+            shuffledAnswers.append(option)
+        random.shuffle(shuffledAnswers)
+        return shuffledAnswers
 
-    # def getId(self):
-        # return int(self.id)
-
-class QuestionLog():
-    def __init__(self):
-        self.questions = []
-    
-    def addQuestion(self, question):
-        self.questions.append(question)
-
-    def showAllQuestions(self):
-        return self.questions
-    
-    def showAllAnswers(self):
-        return 
-
-
-    # def __str__(self):
-    #     retStr = "UserData: "
-    #     retStr += (self.question) + ' '
-    #     retStr += (self.category) + ' '
-    #     retStr += (self.difficulty) + ' '
-    #     retStr += (self.answer) + ' '
-    #     # retStr += (self.incAnswers) + ' '
-    #     # retStr += (self.id) + ' '
-    #     return retStr
-
-    # def __repr__(self):
-    #     retRepr = "UserData: "
-    #     retRepr += (self.question) + ' '
-    #     retRepr += (self.category) + ' '
-    #     retRepr += (self.difficulty) + ' '
-    #     retRepr += (self.answer) + ' '
-    #     retRepr += (self.incAnswers) + ' '
-    #     retRepr += (self.id) + ' '
-    #     return  retRepr
-
-    # class TriviaAnswers():
-    #     def __init__(self):
-    #         self.answers=[]
-    #     def getShuffledAnswers(self):
-    #         results = []
-    #         for incAnswer in self.incAnswers:
-    #             results.append(incAnswer)
-    #             return results
-    #         return None
+    def getId(self):
+        return int(self.id)
