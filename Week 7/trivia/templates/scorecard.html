@@ -11,16 +11,19 @@
     <div class = 'header'>
         <h1>Score</h1>
     </div>
-    <form class="card">
-        {% for question in questions %}     
-		<div>
-            &emsp;<div class="question">{{question.getId()}}. {{question.getQuestion()}}</div>
-            &ensp;{% for answer in question.getShuffledAnswers() %}
-                &ensp;<input type='radio' name='{{question.getId()}}' value='{{answer}}' class="answers">{{answer}}</input>
+    <form class="card" action="http://localhost:5000/" method = "get" onclick='{{controller.clearData()}}'>
+        <h4>Correctly Answered</h4>
+            {% for question in corAnswers %}     
+                &ensp;<div class="question">{{question.getId()}}. {{question.getQuestion()}}</div>
+                &ensp;{{question.getAnswer()}}
             {% endfor %}
-        </div> 
-        {% endfor %}
-        <button>Score</button>
+        <h4>Incorrectly Answered</h4>
+            {% for question in incAnswers %}     
+                &ensp;<div class="question">{{question.getId()}}. {{question.getQuestion()}}</div>
+                &ensp;{{question.getAnswer()}} 
+            {% endfor %}
+        <div></div>
+        <button>Again!</button>
     </form>
 </body>
 </html>

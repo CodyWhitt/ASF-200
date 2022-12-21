@@ -4,7 +4,6 @@ import triviaquestion
 class TriviaGame():
     def __init__(self):
         self.questions = []
-        self.answers = []
     
     def addQuestion(self, question):
         self.questions.append(question)
@@ -12,9 +11,11 @@ class TriviaGame():
     def getAllQuestions(self):
         return self.questions
 
+    def clearData(self):
+        self.questions = []
+
     def getData(self):
         URL = "https://opentdb.com/api.php?amount=5&category=18&difficulty=easy&type=multiple"
-
         try:
             response = requests.get(URL, timeout=5)
             response.raise_for_status()

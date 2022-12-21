@@ -6,12 +6,12 @@ import triviagame
 app = Flask(__name__)
 
 newGame = triviagame.TriviaGame()
-newGame.loadQuestions()
 gameBoardQuestions = newGame.getAllQuestions()
 print(gameBoardQuestions)
 
 @app.route("/")
 def home():
+    newGame.loadQuestions()
     return render_template('index.html',questions = newGame.getAllQuestions())
 
 @app.route('/score', methods=['POST'])
@@ -20,13 +20,12 @@ def checkAnswers():
         correctlyAnsweredQuestions = []
         incorrectlyAnsweredQuestions = []
         for question in gameBoardQuestions:
-            if (request.form[str(question.getID())] == question.getAnswer()):
+            if (request.form[str(question.getId())] == question.getAnswer()):
                 correctlyAnsweredQuestions.append(question)
             else:
                 incorrectlyAnsweredQuestions.append(question)        
                 
         # proccess user guesses to questions
-        return render_template('scorecard.html')
-
+        return render_template('scorecard.html',controller = newGame, incAnswers = incorrectlyAnsweredQuestions, corAnswers = correctlyAnsweredQuestions)
 if __name__ == "__main__":
     app.run()
